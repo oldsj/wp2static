@@ -28,13 +28,10 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: "7.4"
-
-      - name: Build wp2static
-        run: |
-          sudo chown -R $USER $HOME/work
-          composer install
-      - run: |
-          composer build wp2static-addon
+          command: |
+            sudo chown -R $USER $HOME/work
+            composer install
+            composer build wp2static-addon
 
       - name: Archive zip
         uses: actions/upload-artifact@v2
