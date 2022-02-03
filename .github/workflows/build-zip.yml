@@ -31,6 +31,7 @@ jobs:
 
       - name: Build wp2static
         run: |
+          sudo chown -R $USER ~/.composer/
           composer install
       - run: |
           composer build wp2static-addon
