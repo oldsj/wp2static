@@ -1,0 +1,43 @@
+name: Build Zip
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches:
+      - master
+      - develop
+    paths-ignore:
+      - '**.md'
+jobs:
+  build:
+    timeout-minutes: 15
+
+    runs-on: ubuntu-latest
+    name: Build Zip
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        uses: php-actions/composer@v6
+        with:
+          php_version: 8.0
+
+      - name: Build wp2static
+        run: |
+          sudo chown -R $USER $HOME/work
+          composer install
+      - run: |
+          composer build wp2static-addon
+
+      - name: Archive zip
+        uses: actions/upload-artifact@v2
+        with:
+          name: Addon Zip
+          path: ~/Downloads/wp2static-addon.zip
