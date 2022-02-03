@@ -33,6 +33,7 @@ jobs:
       - name: Build wp2static
         run: |
           composer install
+      - run: |
           composer build wp2static-addon
 
       - name: Archive zip
