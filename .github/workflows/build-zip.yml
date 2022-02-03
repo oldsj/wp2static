@@ -40,4 +40,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Addon Zip
-          path: $~/Downloads/wp2static-addon.zip
+          path: ~/Downloads/wp2static-addon.zip
